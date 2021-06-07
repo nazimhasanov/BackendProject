@@ -9,5 +9,8 @@ namespace BackendProject.ViewModel
     public class HomeViewModel
     {
         public List<Slider> Slider { get; set; }
+
+        public List<Course> Offers { get; set; }
+
     }
 }
