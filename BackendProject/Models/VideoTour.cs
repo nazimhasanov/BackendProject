@@ -5,15 +5,10 @@ using System.Threading.Tasks;
 
 namespace BackendProject.Models
 {
-    public class Slider
+    public class VideoTour
     {
         public int Id { get; set; }
-
         public string Title { get; set; }
-
-        public string Subtitle { get; set; }
-
-        public string BackgroundImage { get; set; }
-        public string Image { get; set; }
+        public string VideoLink { get; set; }
     }
 }
