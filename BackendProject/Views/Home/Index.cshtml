@@ -1,12 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    HomeViewModel homeViewModel = Model;
+
+
 }
 
 <!-- Background Area Start -->
 <section id="slider-container" class="slider-area three">
     <div class="slider-owl owl-theme owl-carousel">
         <!-- Start Slingle Slide -->
-        <div class="single-slide item" style="background-image: url(../img/slider/slider3.jpg)">
+     
+        @foreach (var item in homeViewModel.Slider)
+	{
+		 
+        <div class="single-slide item" style="background-image: url(../img/@item.BackgroundImage)">
             <!-- Start Slider Content -->
             <div class="slider-content-area">
                 <div class="container">
@@ -14,16 +21,17 @@
                         <div class="col-md-7">
                             <div class="slide-content-wrapper">
                                 <div class="slide-content">
-                                    <h3>EDUCATION MAKES </h3>
-                                    <h2>PROPER HUMANITY </h2>
-                                    <p>I must explain to you how all this mistaken idea of denouncing pleasure and prsing pain was born and I will give you a complete account of the system  </p>
+                                    
+                                        @Html.Raw(item.Title)
+                                   
+                                    <p>@item.Subtitle </p>
                                     <a class="default-btn" asp-controller="About" asp-action="Login">Learn more</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="slider-img">
-                                <img src="~/img/slider/home.png" alt="slider">
+                                <img src="~/img/@item.Image" alt="slider">
                             </div>
                         </div>
                     </div>
@@ -31,60 +39,10 @@
             </div>
             <!-- Start Slider Content -->
         </div>
-        <!-- End Slingle Slide -->
-        <!-- Start Slingle Slide -->
-        <div class="single-slide item" style="background-image: url(../img/slider/slider2.jpg)">
-            <!-- Start Slider Content -->
-            <div class="slider-content-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="slide-content-wrapper">
-                                <div class="slide-content">
-                                    <h3>EDUCATION MAKES </h3>
-                                    <h2>PROPER HUMANITY </h2>
-                                    <p>I must explain to you how all this mistaken idea of denouncing pleasure and prsing pain was born and I will give you a complete account of the system  </p>
-                                    <a class="default-btn" asp-controller="Home" asp-action="Login">Learn more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="slider-img">
-                                <img src="~/img/slider/home.png" alt="slider">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Start Slider Content -->
-        </div>
-        <!-- End Slingle Slide -->
-        <!-- Start Slingle Slide -->
-        <div class="single-slide item" style="background-image: url(../img/slider/slider1.jpg)">
-            <!-- Start Slider Content -->
-            <div class="slider-content-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="slide-content-wrapper">
-                                <div class="slide-content">
-                                    <h3>EDUCATION MAKES </h3>
-                                    <h2>PROPER HUMANITY </h2>
-                                    <p>I must explain to you how all this mistaken idea of denouncing pleasure and prsing pain was born and I will give you a complete account of the system  </p>
-                                    <a class="default-btn" asp-controller="About" asp-action="Login">Learn more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="slider-img">
-                                <img src="~/img/slider/home.png" alt="slider">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Start Slider Content -->
-        </div>
+	}
+		 
+	
+       
         <!-- End Slingle Slide -->
     </div>
 </section>

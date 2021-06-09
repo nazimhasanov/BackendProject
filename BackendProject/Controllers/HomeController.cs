@@ -1,5 +1,6 @@
 ﻿using BackendProject.DataAccessLayer;
 using BackendProject.Models;
+using BackendProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,14 +24,16 @@ namespace BackendProject.Controllers
         
         public IActionResult Index()
         {
-            var sliders = _dbContext.Sliders.ToList();
-            var courses = _dbContext.Courses.ToList();
-            var coursesDetails = _dbContext.CourseDetails.FirstOrDefault();
+            var sliders = _dbContext.Sliders.ToList();           
             var videoTour = _dbContext.VideoTour.FirstOrDefault();
-            var notiiceBoard = _dbContext.NoticeBoards.FirstOrDefault();
+            var noticeBoard = _dbContext.NoticeBoards.FirstOrDefault();
 
+            var homeViewModel = new HomeViewModel
+            {
+                Slider = sliders,
+            };
 
-            return View();
+            return View(homeViewModel);
         }
 
       

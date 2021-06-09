@@ -12,14 +12,13 @@ namespace BackendProject.Models
         public string About { get; set; }
         public string Apply { get; set; }
         public string Certification { get; set; }
-        public string Reply { get; set; }
         public DateTime CourseStart { get; set; }
         public int CourseDuration { get; set; }
         public string CourseClassDuration { get; set; }
         public string CourseSkillLevel { get; set; }
         public string CourseLanguage { get; set; }
         public int CourseStudent { get; set; }
-        public int CourseAssesment { get; set; }
+        public string CourseAssesment { get; set; }
         public double CourseFee { get; set; }
 
         [ForeignKey("Course")]

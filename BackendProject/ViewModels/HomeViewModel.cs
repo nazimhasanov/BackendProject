@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BackendProject.ViewModel
+namespace BackendProject.ViewModels
 {
     public class HomeViewModel
     {

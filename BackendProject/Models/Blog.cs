@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace BackendProject.Models
 {
-    public class Course
+    public class Blog
     {
         public int Id { get; set; }
-
         public string Image { get; set; }
-
         [Required]
-        public string Title { get; set; }
-
+        public string Name { get; set; }
+        public DateTime Date { get; set; }
+        public string Comment { get; set; }
         public bool IsDelete { get; set; }
-
-        public string Subtitle { get; set; }
-        public CourseDetail CourseDetails { get; set; }
+        public string Description { get; set; }
+        public BlogDetail Blogdetail {get; set;}
 
     }
 }
