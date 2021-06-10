@@ -1,8 +1,7 @@
-﻿
+﻿@model LoginViewModel
 @{
     ViewData["Title"] = "Login";
 }
-
 <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
     <div class="banner-area text-center">
@@ -32,16 +31,28 @@
                             <span>Please login using account detail bellow.</span>
                         </div>
                         <div class="login-form">
-                            <form action="#" method="post">
-                                <input type="text" name="user-name" placeholder="Username">
-                                <input type="password" name="user-password" placeholder="Password">
-                                <div class="button-box">
-                                    <div class="login-toggle-btn">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember">Remember me</label>
-                                        <a href="#">Forgot Password?</a>
+                            <div asp-validation-summary="ModelOnly" style="margin-bottom: 30px" class="text-danger"></div>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input asp-for="Email" placeholder="Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Password" placeholder="Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input asp-for="RememberMe" class="form-check-input" style="margin-left: 0rem;">
+                                        <label class="form-check-label" for="exampleCheck1">RememberMe</label>
+                                        <span asp-validation-for="RememberMe" class="text-danger"></span>
                                     </div>
+                                </div>
+                                <div class="button-box">
                                     <button type="submit" class="default-btn">Login</button>
+                                </div>
+                                <div class="mt-4 font-weight-light pt-30">
+                                    <a asp-action="ForgotPassword" class="text-primary">Forgot your password?</a>
                                 </div>
                             </form>
                         </div>
