@@ -18,6 +18,19 @@ namespace BackendProject.DataAccessLayer
         public DbSet<CourseDetail> CourseDetails { get; set; }
         public DbSet<VideoTour> VideoTour { get; set; }
         public DbSet<NoticeBoard> NoticeBoards { get; set; }
+        public DbSet<About> About { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogDetail> BlogDetails { get; set; }
+        public DbSet<Position> Position { get; set; }
+        public DbSet<SocialMedia> SocialMedia { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<TeacherDetail> TeacherDetails { get; set; }
+        public DbSet<TopTeacher> TopTeachers { get; set; }
+        
+
+
+        
+
 
     }
 }

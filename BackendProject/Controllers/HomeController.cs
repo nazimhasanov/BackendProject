@@ -31,6 +31,8 @@ namespace BackendProject.Controllers
             var homeViewModel = new HomeViewModel
             {
                 Slider = sliders,
+                
+
             };
 
             return View(homeViewModel);
