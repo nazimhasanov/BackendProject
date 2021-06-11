@@ -36,11 +36,12 @@ namespace BackendProject
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
-            services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(option =>
             {
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,14 +59,21 @@ namespace BackendProject
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
-
-            app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
+            app.UseRouting();
+
+
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
