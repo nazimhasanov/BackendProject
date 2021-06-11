@@ -26,10 +26,16 @@ namespace BackendProject.DataAccessLayer
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherDetail> TeacherDetails { get; set; }
         public DbSet<TopTeacher> TopTeachers { get; set; }
-        
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventDetail> EventDetail { get; set; } 
+        public DbSet<Speaker> Speakers { get; set; } 
+        public DbSet<EventDetailSpeaker> EventDetailSpeakers { get; set; } 
 
 
-        
+
+
+
+
 
 
     }

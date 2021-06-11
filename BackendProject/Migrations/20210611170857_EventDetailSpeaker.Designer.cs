@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210611164814_EventEventDetailSpeakers")]
-    partial class EventEventDetailSpeakers
+    [Migration("20210611170857_EventDetailSpeaker")]
+    partial class EventDetailSpeaker
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,6 +180,82 @@ namespace BackendProject.Migrations
                     b.ToTable("CourseDetails");
                 });
 
+            modelBuilder.Entity("BackendProject.Models.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("TimeEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Venue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("BackendProject.Models.EventDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId")
+                        .IsUnique();
+
+                    b.ToTable("EventDetail");
+                });
+
+            modelBuilder.Entity("BackendProject.Models.EventDetailSpeaker", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EventDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpeakerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventDetailId");
+
+                    b.HasIndex("SpeakerId");
+
+                    b.ToTable("EventDetailSpeakers");
+                });
+
             modelBuilder.Entity("BackendProject.Models.NoticeBoard", b =>
                 {
                     b.Property<int>("Id")
@@ -261,6 +337,30 @@ namespace BackendProject.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("SocialMedia");
+                });
+
+            modelBuilder.Entity("BackendProject.Models.Speaker", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Speakers");
                 });
 
             modelBuilder.Entity("BackendProject.Models.Teacher", b =>
@@ -415,6 +515,36 @@ namespace BackendProject.Migrations
                     b.Navigation("Courses");
                 });
 
+            modelBuilder.Entity("BackendProject.Models.EventDetail", b =>
+                {
+                    b.HasOne("BackendProject.Models.Event", "Event")
+                        .WithOne("EventDetail")
+                        .HasForeignKey("BackendProject.Models.EventDetail", "EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+                });
+
+            modelBuilder.Entity("BackendProject.Models.EventDetailSpeaker", b =>
+                {
+                    b.HasOne("BackendProject.Models.EventDetail", "EventDetail")
+                        .WithMany("EventDetailSpeakers")
+                        .HasForeignKey("EventDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackendProject.Models.Speaker", "Speaker")
+                        .WithMany("EventDetailSpeakers")
+                        .HasForeignKey("SpeakerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventDetail");
+
+                    b.Navigation("Speaker");
+                });
+
             modelBuilder.Entity("BackendProject.Models.SocialMedia", b =>
                 {
                     b.HasOne("BackendProject.Models.Teacher", "Teacher")
@@ -458,9 +588,24 @@ namespace BackendProject.Migrations
                     b.Navigation("CourseDetails");
                 });
 
+            modelBuilder.Entity("BackendProject.Models.Event", b =>
+                {
+                    b.Navigation("EventDetail");
+                });
+
+            modelBuilder.Entity("BackendProject.Models.EventDetail", b =>
+                {
+                    b.Navigation("EventDetailSpeakers");
+                });
+
             modelBuilder.Entity("BackendProject.Models.Position", b =>
                 {
                     b.Navigation("Teachers");
+                });
+
+            modelBuilder.Entity("BackendProject.Models.Speaker", b =>
+                {
+                    b.Navigation("EventDetailSpeakers");
                 });
 
             modelBuilder.Entity("BackendProject.Models.Teacher", b =>

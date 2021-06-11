@@ -22,7 +22,8 @@ namespace BackendProject.ViewComponents
 
             if (take == null)
             {
-                List<Teacher> teachers = await _dbContext.Teachers.Where(x => x.IsDeleted == false).Include(y => y.SocialMedias).Include(z => z.Position).ToListAsync();
+                List<Teacher> teachers = await _dbContext.Teachers.Where(x => x.IsDeleted == false).Include(y => y.SocialMedias)
+                                                                       .Include(z => z.Position).ToListAsync();
                 return View(teachers);
             }
             else
