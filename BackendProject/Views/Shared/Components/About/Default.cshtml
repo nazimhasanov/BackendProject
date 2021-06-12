@@ -1,5 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model About
+
+<div class="about-area pb-155">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="about-content">
+                    <h2>@Html.Raw(Model.Name)</h2>
+                    <p>
+                        @Html.Raw(Model.Subtitle)
+                    </p>
+                    <a class="default-btn" asp-controller="Course" asp-action="Index">view courses</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-img">
+                    <img src="~/img/about/@Model.Image" alt="about">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

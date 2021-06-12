@@ -1,5 +1,7 @@
 ﻿using BackendProject.DataAccessLayer;
+using BackendProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +21,24 @@ namespace BackendProject.Controllers
         {
             return View();
         }
+        public IActionResult Detail(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var blogDetails = _dbContext.BlogDetails.Where(x => x.isDelete == false)
+                                                  .Include(x => x.Blog).OrderByDescending(x => x.Id)
+                                                  .FirstOrDefault(x => x.BlogId == id);
+            if (blogDetails == null)
+                return NotFound();
+
+            var blogViewModel = new BlogViewModel
+            {
+                BlogDetail = blogDetails,
+                Blogs = _dbContext.Blogs.Where(x => x.IsDelete == false).Take(3).ToList()
+            };
+            return View(blogViewModel);
+        }
+
     }
 }

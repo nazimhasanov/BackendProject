@@ -10,7 +10,8 @@ namespace BackendProject.ViewModels
     {
         public List<Slider> Slider { get; set; }
 
-        public List<Course> Offers { get; set; }
+        public VideoTour Video { get; set; }
+        public List<NoticeBoard> NoticeBoards { get; set; }
 
     }
 }

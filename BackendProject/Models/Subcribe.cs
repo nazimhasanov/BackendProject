@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace BackendProject.Models
 {
-    public class About
+    public class Subcribe
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
-
-        public string Image { get; set; }
-
-        [Required]
-        public string Subtitle { get; set; }
-
-       
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
     }
 }

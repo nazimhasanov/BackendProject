@@ -10,17 +10,27 @@ namespace BackendProject.ViewComponents
 {
     public class BlogViewComponent : ViewComponent
     {
+
         private readonly AppDbContext _dbContext;
 
         public BlogViewComponent(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-
-        public async Task<IViewComponentResult> InvokeAsync(int count = 3)
+        public async Task<IViewComponentResult> InvokeAsync(int? take, int skip)
         {
-            var blogs = await _dbContext.Blogs.Take(count).ToListAsync();
-            return View(blogs);
+            if (take == null)
+            {
+                var blog = await _dbContext.Blogs.Where(x => x.IsDelete == false)
+                                                 .OrderByDescending(y => y.Id).ToListAsync();
+                return View(blog);
+            }
+            else
+            {
+                var blog = await _dbContext.Blogs.Where(x => x.IsDelete == false).OrderByDescending(y => y.Id)
+                                                 .Skip((skip - 1) * 6).Take((int)take).ToListAsync();
+                return View(blog);
+            }
         }
     }
 }

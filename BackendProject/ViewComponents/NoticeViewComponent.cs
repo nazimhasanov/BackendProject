@@ -20,7 +20,7 @@ namespace BackendProject.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var noticeBoards = await _dbContext.NoticeBoards.ToListAsync();
+            var noticeBoards = await _dbContext.NoticeBoards.Take(6).ToListAsync();
             var videoTour = await _dbContext.VideoTour.FirstOrDefaultAsync();
 
             var noticeViewModel = new NoticeViewModel

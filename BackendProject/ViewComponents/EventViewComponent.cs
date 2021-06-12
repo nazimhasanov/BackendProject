@@ -29,9 +29,9 @@ namespace BackendProject.ViewComponents
             }
             else
             {
-                List<Event> eventDetails = await _dbContext.Events.Where(x => x.IsDelete == false).Include(y => y.EventDetail)
+                List<Event> events = await _dbContext.Events.Where(x => x.IsDelete == false).Include(y => y.EventDetail)
                                                         .ThenInclude(z => z.EventDetailSpeakers).ThenInclude(z => z.Speaker).Take(6).ToListAsync();
-                return View(eventDetails);
+                return View(events);
             }
 
         }

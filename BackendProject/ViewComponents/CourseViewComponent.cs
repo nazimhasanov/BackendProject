@@ -16,11 +16,19 @@ namespace BackendProject
         {
             _dbContext = dbContext;
         }
-
-        public async Task<IViewComponentResult> InvokeAsync(int count = 3)
+        public async Task<IViewComponentResult> InvokeAsync(int? take, int skip)
         {
-            var courses = await _dbContext.Courses.Take(count).ToListAsync();
-            return View(courses);
+            if (take == null)
+            {
+                var courses = await _dbContext.Courses.Where(d => d.IsDelete == false).ToListAsync();
+                return View(courses);
+            }
+            else
+            {
+                var courses = await _dbContext.Courses.Where(d => d.IsDelete == false).Skip((skip - 1) * 6)
+                                                      .Take((int)take).ToListAsync();
+                return View(courses);
+            }
         }
     }
 }

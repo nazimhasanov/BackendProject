@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 
 namespace BackendProject.ViewModels
 {
-    public class RegisterViewModel
+    public class UserViewModel
     {
+        public string Id { get; set; }
+
         [Required]
-        public string Fullname { get; set; }
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
 
         [Required]
         public string Username { get; set; }
 
+
         [Required, EmailAddress, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required, DataType(DataType.Password)]
-        public string Password { get; set; }
+        [Required]
+        public string Role { get; set; }
 
-        [Required, DataType(DataType.Password), Compare(nameof(Password))]
-        public string ConfirmPassword { get; set; }
-
+        public bool IsDeactive { get; set; }
     }
 }
