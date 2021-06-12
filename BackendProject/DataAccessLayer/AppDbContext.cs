@@ -29,7 +29,13 @@ namespace BackendProject.DataAccessLayer
         public DbSet<Event> Events { get; set; }
         public DbSet<EventDetail> EventDetail { get; set; } 
         public DbSet<Speaker> Speakers { get; set; } 
-        public DbSet<EventDetailSpeaker> EventDetailSpeakers { get; set; } 
+        public DbSet<EventDetailSpeaker> EventDetailSpeakers { get; set; }
+        public DbSet<BannerArea> BannerAreas { get; set; }
+        public DbSet<Subcribe> Subcribes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Contact> Contact { get; set; }
+
+
 
 
 

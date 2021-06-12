@@ -17,7 +17,9 @@ namespace BackendProject.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var contact = _dbContext.Contact.FirstOrDefault();
+            return View(contact);
         }
+
     }
 }

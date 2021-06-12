@@ -8,7 +8,7 @@ namespace BackendProject.ViewModels
 {
     public class CourseViewModel
     {
-        public List<Course> Courses { get; set; }
+        public List<Blog> Blogs { get; set; }
         public CourseDetail CourseDetail { get; set; }
     }
 }
