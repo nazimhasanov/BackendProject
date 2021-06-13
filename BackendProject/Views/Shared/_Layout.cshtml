@@ -68,7 +68,8 @@
                                         <li>
                                             <a asp-controller="Home" asp-action="Index">Home</a>
                                         </li>
-                                        <li><a asp-controller="About" asp-action="Index">About</a>
+                                        <li>
+                                            <a asp-controller="About" asp-action="Index">About</a>
                                         </li>
                                         <li>
                                             <a asp-controller="Course" asp-action="Index">courses</a>
@@ -82,7 +83,8 @@
                                         <li>
                                             <a asp-controller="Blog" asp-action="Index">blog</a>
                                         </li>
-                                        <li><a asp-controller="Contact" asp-action="Index">Contact</a>
+                                        <li>
+                                            <a asp-controller="Contact" asp-action="Index">Contact</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -118,6 +120,36 @@
     </header>
     <!-- Header Area End -->
     @RenderBody()
+
+    <!-- Subscribe Start -->
+    <div class="subscribe-area pt-60 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="subscribe-content section-title text-center">
+                        <h2>subscribe our newsletter</h2>
+                        <p>I must explain to you how all this mistaken idea </p>
+                    </div>
+                    <div class="newsletter-form mc_embed_signup">
+                        <form id="subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <div id="mc_embed_signup_scroll" class="mc-form">
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <input type="email" value="" name="EMAIL" class="email" id="Email-sucscribe" placeholder="Enter your e-mail address" required>
+                                }
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div class="mc-news" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
+                                <button id="button-subscribe" class="default-btn" type="button" name="subscribe"><span>subscribe</span></button>
+                            </div>
+                            <div style="text-align:center;color:red !important" id="response-subscribe"></div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe End -->
     <!-- Footer Start -->
 
     <footer class="footer-area">
@@ -196,6 +228,7 @@
     <script src="~/js/jquery.mb.YTPlayer.js"></script>
     <script src="~/js/jquery.nicescroll.min.js"></script>
     <script src="~/js/plugins.js"></script>
+    <script src="~/js/backend.js" asp-append-version="true"></script>
     @RenderSection("Scripts", false)
     <script src="~/js/main.js"></script>
 

@@ -1,0 +1,39 @@
+﻿@model Event
+
+@{ ViewData["Title"] = "Detail"; }
+
+<div class="card-body">
+    <img src="~/img/event/@Model.Image" style="width: 150px; height: 150px; object-fit: cover" />
+</div>
+<div class="card-body">
+    <h5>Event Name</h5>  @Model.Title
+</div>
+<div class="card-body">
+    <h5>Event Description</h5>  @Model.EventDetail.Description
+</div>
+<div class="card-body">
+    <h5>Venue</h5>  @Model.Venue
+</div>
+<div class="card-body">
+    <h5>TimeStart</h5>  @Model.TimeStart.ToString("dd MMMM yyyy")
+</div>
+<div class="card-body">
+    <h5>TimeEnd</h5>  @Model.TimeEnd.ToString("dd MMMM yyyy")
+</div>
+<div class="card-body">
+    @foreach (var speakers in Model.EventDetail.EventDetailSpeakers)
+    {
+        <ul>
+            <li>
+                <h5>Spiker Name</h5> @speakers.Speaker.FullName
+            </li>
+            <li>
+                <h5>Spiker Profession</h5> @speakers.Speaker.Position
+            </li>
+        </ul>
+    }
+</div>
+<div style="padding: 0 10px">
+    <a asp-action="Index" class="btn btn-secondary">Go Back</a>
+</div>
+

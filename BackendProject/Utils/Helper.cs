@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackendProject.Utils
 {
-    public class Helper
+    public static class Helper
     {
         public static async Task SendMessage(string messageSubject, string messageBody, string mailTo)
         {
