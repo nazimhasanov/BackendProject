@@ -1,7 +1,9 @@
-﻿
+﻿@model RegisterViewModel
+
 @{
     ViewData["Title"] = "Register";
 }
+
 
 <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
@@ -31,20 +33,32 @@
                             <h2>sign up</h2>
                             <span>Please login using account detail bellow.</span>
                         </div>
-                        <div class="login-form">
-                            <form action="#" method="post">
-                                <input type="text" name="user-name" placeholder="Username">
-                                <input type="password" name="user-password" placeholder="Password">
-                                <div class="button-box">
-                                    <div class="login-toggle-btn">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember">Remember me</label>
-                                        <a href="#">Forgot Password?</a>
-                                    </div>
-                                    <button type="submit" class="default-btn">sign up</button>
-                                </div>
-                            </form>
-                        </div>
+                        <form method="post">
+                            <div class="form-group">
+                                <input asp-for="Fullname" placeholder="Name">
+                                <span asp-validation-for="Fullname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Username" placeholder="SurName">
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>                           
+                            <div class="form-group">
+                                <input asp-for="Email" placeholder="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Password" placeholder="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="ConfirmPassword" placeholder="ConfirmPassword">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="button-box">
+                                <button type="submit" class="default-btn">sign up</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

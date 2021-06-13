@@ -1,0 +1,27 @@
+﻿@model List<Event>
+
+<div class="row">
+    @foreach (Event eventSearch in Model)
+    {
+        <div class="col-md-4 col-sm-6 col-xs-12 mt-40">
+            <div class="single-event mb-35">
+                <div class="event-img">
+                    <a asp-controller="Event" asp-action="Detail" asp-route-id="@eventSearch.Id"><img src="img/event/@eventSearch.Image" alt="event"></a>
+                    <div class="event-date">
+                        <h3>@eventSearch.TimeStart.ToString("dd") <span>@eventSearch.TimeStart.ToString("MMM")</span></h3>
+                    </div>
+                </div>
+                <div class="event-content text-left">
+                    <h4><a asp-controller="Event" asp-action="Detail" asp-route-id="@eventSearch.Id">@eventSearch.Title</a></h4>
+                    <ul>
+                        <li><span>time:</span> @eventSearch.TimeStart.ToString("Time")- @eventSearch.TimeStart.ToString("Time")</li>
+                        <li><span>venue</span> @eventSearch.Venue</li>
+                    </ul>
+                    <div class="event-content-right">
+                        <a class="default-btn" asp-controller="Event" asp-action="Detail" asp-route-id="@eventSearch.Id">join now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

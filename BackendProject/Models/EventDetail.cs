@@ -13,6 +13,7 @@ namespace BackendProject.Models
         public bool IsDelete { get; set; }
 
 
+
         public ICollection<EventDetailSpeaker> EventDetailSpeakers { get; set; }
 
         [ForeignKey("Event")]

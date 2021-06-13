@@ -8,8 +8,9 @@ namespace BackendProject.ViewModels
 {
     public class EventViewModel
     {
-        public List<Event> Events { get; set; }
+        public List<Blog> Blogs { get; set; }
 
         public EventDetail EventDetail { get; set; }
+        public List<Speaker> Speakers { get; set; }
     }
 }

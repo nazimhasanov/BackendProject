@@ -15,7 +15,9 @@ namespace BackendProject.Models
         public string Venue { get; set; }
         public bool IsDelete { get; set; }
 
+
         public EventDetail EventDetail { get; set; }
+
     }
 
 }

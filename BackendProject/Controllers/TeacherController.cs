@@ -32,6 +32,7 @@ namespace BackendProject.Controllers
                 return NotFound();
 
             return View(teacherDetail);
+
         }
     }
 }
