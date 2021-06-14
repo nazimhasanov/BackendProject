@@ -23,38 +23,7 @@
 <!-- Event Start -->
 <div class="event-area three text-center pt-150 pb-150">
     <div class="container">
-        <div class="row">
-            @foreach (Event item in Model)
-            {
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-event mb-60">
-                    <div class="event-img">
-                        <a asp-controller="Event" asp-action="Detail" asp-route-id="@item.Id">
-                            <img src="~/img/event/@item.Image" alt="event">
-                            <div class="course-hover">
-                                <i class="fa fa-link"></i>
-                            </div>
-                        </a>
-                        <div class="event-date">
-                            <h3>20 <span>jun</span></h3>
-                        </div>
-                    </div>
-                    <div class="event-content text-left">
-                        <h4><a asp-controller="Event" asp-action="Detail" asp-route-id="@item.Id">@Html.Raw(item.Title)</a></h4>
-                        <ul>
-                            <li><span>time: </span>@item.TimeStart.ToString("mm") AM - @item.TimeEnd.ToString("mm") PM </li>
-                            <li><span>venue: </span>@item.Venue</li>
-                        </ul>
-                        <div class="event-content-right">
-                            <a class="default-btn" asp-controller="Event" asp-action="Detail" asp-route-id="@item.Id">join now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            }
-
-        </div>
+        @await Component.InvokeAsync("Event")
     </div>
 </div>
 <!-- Event End -->
