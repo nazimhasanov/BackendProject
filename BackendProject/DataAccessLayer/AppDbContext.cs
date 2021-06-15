@@ -25,7 +25,7 @@ namespace BackendProject.DataAccessLayer
         public DbSet<SocialMedia> SocialMedia { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherDetail> TeacherDetails { get; set; }
-        public DbSet<TopTeacher> TopTeachers { get; set; }
+        public DbSet<Testimonial> Testimonial { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventDetail> EventDetail { get; set; } 
         public DbSet<Speaker> Speakers { get; set; } 
@@ -34,6 +34,9 @@ namespace BackendProject.DataAccessLayer
         public DbSet<Subcribe> Subcribes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contact { get; set; }
+        public DbSet<Bio> Bios { get; set; }
+
+
 
 
 

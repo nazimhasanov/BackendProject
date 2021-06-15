@@ -10,5 +10,5 @@ namespace BackendProject.ViewModels
     {
         public ICollection<NoticeBoard> NoticeBoards { get; set; }
         public VideoTour VideoTour { get; set; }
-    }
+    } 
 }

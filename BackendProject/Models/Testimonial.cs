@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace BackendProject.Models
 {
-    public class BannerArea
+    public class Testimonial
     {
         public int Id { get; set; }
-        [Required]
         public string Image { get; set; }
-        public string Title { get; set; }
-
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public string Position { get; set; }
+       
     }
 }
