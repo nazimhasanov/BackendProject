@@ -1,0 +1,107 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create course</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photo">Photo</label>
+                        <input asp-for="Photo" class="form-control" accept="image/*">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Title">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Subtitle">Subtitle</label>
+                        <textarea asp-for="Subtitle" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="Subtitle" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.About">About Course</label>
+                        <input asp-for="CourseDetails.About" class="form-control" placeholder="AboutCourse">
+                        <span asp-validation-for="CourseDetails.About" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.Apply">How To Apply</label>
+                        <input asp-for="CourseDetails.Apply" class="form-control" placeholder="HowToApply">
+                        <span asp-validation-for="CourseDetails.Apply" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.Certification">Certification</label>
+                        <input asp-for="CourseDetails.Certification" class="form-control" placeholder="Certification">
+                        <span asp-validation-for="CourseDetails.Certification" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseStart">Starts</label>
+                        <input asp-for="CourseDetails.CourseStart" class="form-control" placeholder="Starts">
+                        <span asp-validation-for="CourseDetails.CourseStart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseDuration">Duration</label>
+                        <input asp-for="CourseDetails.CourseDuration" class="form-control" placeholder="Duration">
+                        <span asp-validation-for="CourseDetails.CourseDuration" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseClassDuration">Class Duration</label>
+                        <input asp-for="CourseDetails.CourseClassDuration" class="form-control" placeholder="ClassDuration">
+                        <span asp-validation-for="CourseDetails.CourseClassDuration" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseSkillLevel">SkillLevel</label>
+                        <input asp-for="CourseDetails.CourseSkillLevel" class="form-control" placeholder="SkillLevel">
+                        <span asp-validation-for="CourseDetails.CourseSkillLevel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseLanguage">Language</label>
+                        <input asp-for="CourseDetails.CourseLanguage" class="form-control" placeholder="Language">
+                        <span asp-validation-for="CourseDetails.CourseLanguage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseStudent">Students</label>
+                        <input asp-for="CourseDetails.CourseStudent" class="form-control" placeholder="Students">
+                        <span asp-validation-for="CourseDetails.CourseStudent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseAssesment">Assesments</label>
+                        <input asp-for="CourseDetails.CourseAssesment" class="form-control" placeholder="Assesments">
+                        <span asp-validation-for="CourseDetails.CourseAssesment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseDetails.CourseFee">Course Fee</label>
+                        <input asp-for="CourseDetails.CourseFee" class="form-control" placeholder="CourseFee">
+                        <span asp-validation-for="CourseDetails.CourseFee" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Go back</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Subtitle'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+

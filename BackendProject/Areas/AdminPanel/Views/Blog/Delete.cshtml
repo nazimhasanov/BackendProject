@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Blog blog = Model;
+}
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <img src="~/img/blog/@blog.Image" style="width:200px !important ; height:100px !important" />
+                <h4 class="card-title">Name : @blog.Name</h4>
+                <p>Time : @blog.Date</p>
+                <p>MessageCount : @blog.Comment</p>
+                <p>
+                    MainDescription : @Html.Raw(blog.Description)
+                </p>
+                <p>Title : @blog.Blogdetail.Title</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <a asp-action="Index" class="btn btn-primary">Go Back</a>
+    <form method="post">
+        <button type="submit" class="btn btn-danger mr-2">Delete</button>
+    </form>
+</div>
+
+
+
