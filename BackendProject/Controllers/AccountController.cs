@@ -13,7 +13,7 @@ namespace BackendProject.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager; 
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
@@ -58,8 +58,13 @@ namespace BackendProject.Controllers
                 ModelState.AddModelError("", "Email or Password is INCORRECT");
                 return View();
             }
+            if (loginResult.IsLockedOut)
+            {
+                ModelState.AddModelError("", "Your account is locked out.Try a few minut later !");
+                return View();
+            }
 
-            
+
             return RedirectToAction("Index", "Home");
 
         }
@@ -76,7 +81,7 @@ namespace BackendProject.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return NotFound();
             }
 
             var dbUser = await _userManager.FindByNameAsync(register.Username);
@@ -126,7 +131,7 @@ namespace BackendProject.Controllers
         {
             if (string.IsNullOrEmpty(forgotPassword.Email))
             {
-                ModelState.AddModelError("Email", " It does not empty");
+                ModelState.AddModelError("Email", " Email does not empty");
                 return View();
             }
 

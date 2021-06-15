@@ -24,6 +24,9 @@ namespace BackendProject.Models
 
         [NotMapped]
         public IFormFile Photo { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
+        public ICollection<CourseCategory> CourseCategories { get; set; }
 
     }
 }

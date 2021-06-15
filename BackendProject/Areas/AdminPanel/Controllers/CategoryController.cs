@@ -1,5 +1,6 @@
 ﻿using BackendProject.DataAccessLayer;
 using BackendProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace BackendProject.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
+    [Authorize(Roles = RoleConstant.Admin)]
     public class CategoryController : Controller
     {
 
