@@ -35,6 +35,10 @@ namespace BackendProject.DataAccessLayer
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Bio> Bios { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<CourseCategory> CourseCategories { get; set; }
+        public DbSet<EventCategory> EventCategories { get; set; }
 
 
 
