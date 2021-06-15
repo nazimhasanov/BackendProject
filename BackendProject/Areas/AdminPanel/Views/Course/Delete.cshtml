@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Course course = Model;
+}
+ 
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <img src="~/img/course/@course.Image" style="width:200px !important ; height:100px !important" />
+                <h4 class="card-title">Name : @course.Title</h4>
+                <p>
+                    Description : @Html.Raw(course.Subtitle)
+                </p>   
+                <p>AboutCourse : @course.CourseDetails.About</p>
+                <p>HowToApply : @course.CourseDetails.Apply</p>
+                <p>Certification : @course.CourseDetails.Certification</p>
+                <p>Starts : @course.CourseDetails.CourseStart</p>
+                <p>Duration : @course.CourseDetails.CourseDuration</p>
+                <p>ClassDuration : @course.CourseDetails.CourseClassDuration</p>
+                <p>SkillLevel : @course.CourseDetails.CourseSkillLevel</p>
+                <p>Language : @course.CourseDetails.CourseLanguage</p>
+                <p>Students : @course.CourseDetails.CourseStudent</p>
+                <p>Assesments : @course.CourseDetails.CourseAssesment</p>
+                <p>CourseFee : @course.CourseDetails.CourseFee</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <a asp-action="Index" class="btn btn-primary">Go Back</a>
+    <form method="post">
+        <button type="submit" class="btn btn-danger mr-2">Delete</button>
+    </form>
+</div>
+
+

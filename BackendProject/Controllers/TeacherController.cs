@@ -1,4 +1,5 @@
 ﻿using BackendProject.DataAccessLayer;
+using BackendProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,14 +25,21 @@ namespace BackendProject.Controllers
         {
             if (id == null)
                 return NotFound();
-
+            
             var teacherDetail = _dbContext.TeacherDetails.Where(x => x.IsDeleted == false).Include(x => x.Teacher).ThenInclude(y => y.SocialMedias)
                 .Include(t => t.Teacher).ThenInclude(t => t.Position).FirstOrDefault(z => z.TeacherId == id);
-
+            
             if (teacherDetail == null)
                 return NotFound();
 
-            return View(teacherDetail);
+            var teacherViewModel = new TeacherViewModel
+            {
+                TeacherDetail = teacherDetail
+              
+
+            };
+
+            return View(teacherViewModel);
 
         }
     }

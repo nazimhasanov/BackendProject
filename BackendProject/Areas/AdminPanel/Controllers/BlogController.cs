@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace BackendProject.Areas.AdminPanel.Controllers
 {
 
-    [Area("AdminPanel")]
+    [Area("AdminPanel")] 
     public class BlogController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -209,9 +209,8 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             if (id == null)
                 return NotFound();
 
-            var blog = _dbContext.Blogs
-                .Include(x => x.Blogdetail).Where(y => y.IsDelete == false)
-                .FirstOrDefault(x => x.Id == id);
+            var blog = _dbContext.Blogs.Include(x => x.Blogdetail).Where(y => y.IsDelete == false)
+                                       .FirstOrDefault(x => x.Id == id);
 
             if (blog == null)
                 return NotFound();
