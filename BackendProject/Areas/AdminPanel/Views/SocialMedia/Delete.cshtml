@@ -1,0 +1,33 @@
+﻿
+
+@{
+    ViewData["Title"] = "Delete";
+    SocialMedia socialMedia = Model;
+}
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <img src="@socialMedia.Icon" style="width:200px !important ; height:100px !important" />
+                <h4 class="card-title" style="margin-top: 20px">Link : @socialMedia.Link</h4>
+
+                <p>Teacher Name : @socialMedia.Teacher.FullName</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <a asp-action="Index" class="btn btn-primary">Go Back</a>
+    <form method="post">
+        <button type="submit" class="btn btn-danger mr-2">Delete</button>
+    </form>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    List<SocialMedia> socmed = Model;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Social Media</h4>
+                <a asp-action="Create" class="btn btn-primary">Create</a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Icon</th>
+                                <th>Link</th>
+                                <th>Teacher Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var socialMedia in socmed)
+                            {
+                                <tr>
+                                    <td class="myIcon">
+                                        @Html.Raw(socialMedia.Icon)
+                                    </td>
+                                    <td>
+                                        @socialMedia.Link
+                                    </td>
+                                    <td>
+                                        @socialMedia.Teacher.FullName
+                                    </td>
+                                    <td>
+                                        <a asp-action="Update" asp-route-id="@socialMedia.Id" class="btn btn-warning">Update</a>
+                                        <a asp-action="Delete" asp-route-id="@socialMedia.Id" class="btn btn-danger">Delete</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

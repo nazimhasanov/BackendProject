@@ -29,10 +29,10 @@ namespace BackendProject.Controllers
 
         public IActionResult Login()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    return NotFound();
-            //}
+            if (User.Identity.IsAuthenticated)
+            {
+                return NotFound();
+            }
             return View();
         }
 
@@ -95,6 +95,7 @@ namespace BackendProject.Controllers
             {
                 UserName = register.Username,
                 Fullname = register.Fullname,
+                Surname = register.Surname,
                 Email = register.Email
 
             };
@@ -198,6 +199,24 @@ namespace BackendProject.Controllers
                 return View();
             }
             return RedirectToAction("Login");
+        }
+
+        public async Task CreateUserRole()
+        {
+            if(!await _roleManager.RoleExistsAsync(RoleConstants.AdminRole))
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = RoleConstants.AdminRole });
+            }
+
+            if (!await _roleManager.RoleExistsAsync(RoleConstants.CourseModeratorRole))
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = RoleConstants.CourseModeratorRole });
+            }
+
+            if (!await _roleManager.RoleExistsAsync(RoleConstants.UserRole))
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = RoleConstants.UserRole });
+            }
         }
     }
 }

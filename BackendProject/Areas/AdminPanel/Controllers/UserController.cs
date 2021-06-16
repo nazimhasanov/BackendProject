@@ -1,4 +1,5 @@
-﻿using BackendProject.DataAccessLayer;
+﻿using BackendProject.Data;
+using BackendProject.DataAccessLayer;
 using BackendProject.Models;
 using BackendProject.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace BackendProject.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    [Authorize(Roles = RoleConstant.Admin + "," + RoleConstant.CourseModerator)]
+    [Authorize(Roles = RoleConstants.AdminRole + "," + RoleConstants.CourseModeratorRole)]
     public class UserController : Controller
     {
 
@@ -68,9 +69,9 @@ namespace BackendProject.Areas.AdminPanel.Controllers
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
                 Roles = new List<string>()
             };
-            changeRole.Roles.Add(RoleConstant.Admin);
-            changeRole.Roles.Add(RoleConstant.Member);
-            changeRole.Roles.Add(RoleConstant.CourseModerator);
+            changeRole.Roles.Add(RoleConstants.AdminRole);
+            changeRole.Roles.Add(RoleConstants.UserRole);
+            changeRole.Roles.Add(RoleConstants.CourseModeratorRole);
 
             return View();
         }
@@ -95,17 +96,17 @@ namespace BackendProject.Areas.AdminPanel.Controllers
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
                 Roles = new List<string>()
             };
-            changeRole.Roles.Add(RoleConstant.Admin);
-            changeRole.Roles.Add(RoleConstant.Member);
-            changeRole.Roles.Add(RoleConstant.CourseModerator);
-
+            changeRole.Roles.Add(RoleConstants.AdminRole);
+            changeRole.Roles.Add(RoleConstants.UserRole);
+            changeRole.Roles.Add(RoleConstants.CourseModeratorRole);
+            
             if (selectedRole == null)
             {
                 ModelState.AddModelError("", "Bosh ola bilmez");
                 return View(changeRole);
             }
 
-            if (selectedRole.ToLower() == RoleConstant.CourseModerator.ToLower())
+            if (selectedRole.ToLower() == RoleConstants.CourseModeratorRole.ToLower())
             {
                 if (CoursesId.Count == 0)
                 {
@@ -114,7 +115,7 @@ namespace BackendProject.Areas.AdminPanel.Controllers
                 }
             }
 
-            if (selectedRole.ToLower() != RoleConstant.CourseModerator.ToLower())
+            if (selectedRole.ToLower() != RoleConstants.CourseModeratorRole.ToLower())
             {
                 foreach (var item in user.Courses)
                 {

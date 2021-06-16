@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 namespace BackendProject.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    [Authorize(Roles = RoleConstant.Admin)]
+
+    //[Authorize(Roles = RoleConstant.Admin)]
     public class CategoryController : Controller
     {
 
@@ -104,6 +105,40 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             await _dbContext.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var category = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
+
+            if (category == null)
+                return NotFound();
+
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteCategory(int? id)
+        {
+
+            if (id == null)
+                return NotFound();
+
+            var category = await _dbContext.Categories.FindAsync(id);
+
+            if (category == null)
+                return NotFound();
+
+            _dbContext.Categories.Remove(category);
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+
+
         }
     }
 }

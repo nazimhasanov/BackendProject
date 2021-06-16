@@ -90,5 +90,7 @@ namespace BackendProject.Areas.AdminPanel.Controllers
 
             return RedirectToAction("Index");
         }
+
+
     }
 }

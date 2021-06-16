@@ -1,0 +1,74 @@
+﻿@model SocialMedia
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card d-flex flex-row">
+            <div class="card-body col-6">
+                <h4 class="card-title">Create teacher</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Icon">Icon</label>
+                        <input asp-for="Icon" class="form-control">
+                        <span asp-validation-for="Icon" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Link">Link</label>
+                        <input asp-for="Link" class="form-control" placeholder="Link">
+                        <span asp-validation-for="Link" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="TeacherId">
+                            <option value="">Select Teacher</option>
+                            @foreach (Teacher teacher in ViewBag.Teacher)
+                            {
+                                <option value="@teacher.Id">@teacher.FullName</option>
+                            }
+                        </select>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Go back</a>
+                </form>
+
+            </div>
+            <div class="card-body col-6">
+                <h4 class="card-title">Social Medias</h4>
+                @foreach (SocialMedia socset in ViewBag.SocialMedias)
+                {
+                    <div class="item-icon  d-flex  justify-content-between align-items-center mb-3">
+                        <div class="col-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="col-6">
+                                    @socset.Link :
+                                </div>
+                                <div class="col-6 myIcon">
+                                    @Html.Raw(socset.Icon)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            @socset.Icon
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+
+
+
+
+

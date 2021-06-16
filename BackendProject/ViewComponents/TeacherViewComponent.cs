@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace BackendProject.ViewComponents
-{
+{ 
     public class TeacherViewComponent : ViewComponent
     {
         private readonly AppDbContext _dbContext;

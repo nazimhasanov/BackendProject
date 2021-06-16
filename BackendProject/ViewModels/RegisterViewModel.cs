@@ -14,6 +14,9 @@ namespace BackendProject.ViewModels
         [Required]
         public string Username { get; set; }
 
+        [Required]
+        public string Surname { get; set; }
+
         [Required, EmailAddress, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

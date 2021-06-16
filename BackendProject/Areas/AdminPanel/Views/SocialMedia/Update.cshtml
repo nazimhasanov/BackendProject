@@ -1,0 +1,61 @@
+﻿@model SocialMedia
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Update teacher</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Icon">Icon</label>
+                        <input asp-for="Icon" class="form-control">
+                        <span asp-validation-for="Icon" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Link">Link</label>
+                        <input asp-for="Link" class="form-control" placeholder="Link">
+                        <span asp-validation-for="Link" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="TeacherId">
+                            @foreach (Teacher teacher in ViewBag.Teacher)
+                            {
+                                if (Model.TeacherId == teacher.Id)
+                                {
+                                    <option selected value="@teacher.Id">@teacher.FullName</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@teacher.Id">@teacher.FullName</option>
+
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Update</button>
+                    <a asp-action="Index" class="btn btn-secondary">Go back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+
+
+
+
+
+
+
