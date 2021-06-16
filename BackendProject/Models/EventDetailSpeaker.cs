@@ -12,7 +12,7 @@ namespace BackendProject.Models
         public EventDetail EventDetail { get; set; }
         public int EventDetailId { get; set; }
 
-        public Speaker Speaker { get; set; }
+        public Speaker Speaker { get; set; } 
         public int SpeakerId { get; set; }
 
     }

@@ -1,0 +1,69 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Update Event</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photo">Photo</label>
+                        <input asp-for="Photo" class="form-control" accept="image/*">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Title">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>                    
+                    <div class="form-group">
+                        <label asp-for="TimeStart">TimeStart</label>
+                        <input asp-for="TimeStart" class="form-control" placeholder="TimeStart">
+                        <span asp-validation-for="TimeStart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TimeEnd">TimeEnd</label>
+                        <input asp-for="TimeEnd" class="form-control" placeholder="TimeEnd">
+                        <span asp-validation-for="TimeEnd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Venue">Venue</label>
+                        <input asp-for="Venue" class="form-control" placeholder="Venue">
+                        <span asp-validation-for="Venue" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="EventDetail.Description">Description</label>
+                        <textarea asp-for="EventDetail.Description" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="EventDetail.Description" class="text-danger"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary mr-2">Update</button>
+                    <a asp-action="Index" class="btn btn-secondary">Go back</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+
+

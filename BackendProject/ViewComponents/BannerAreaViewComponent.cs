@@ -16,10 +16,10 @@ namespace BackendProject.ViewComponents
             _dbContext = dbContext;
 
         }
-        public async Task<IViewComponentResult> InvokeAsync(string title, string source)
+        public async Task<IViewComponentResult> InvokeAsync(string title, string key)
         {
             ViewBag.BannerArea = title;
-            ViewBag.Source = source;
+            ViewBag.Key = key;
 
             var bannerArea = await _dbContext.BannerAreas.FirstOrDefaultAsync();
             return View(bannerArea);

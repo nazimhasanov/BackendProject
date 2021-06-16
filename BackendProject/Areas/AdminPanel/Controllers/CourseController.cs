@@ -224,5 +224,6 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
     }
-}
+} 
