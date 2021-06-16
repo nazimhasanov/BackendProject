@@ -1,0 +1,36 @@
+﻿@model EventViewModel
+
+@{
+    ViewData["Title"] = "Delete";  
+}
+
+<div class="col-md-12 grid-margin stretch-card bg-dark text-white">
+    <div class="card d-flex flex-column bg-dark">
+        <div class="card-body">
+            <img src="~/img/event/@Model.EventDetail.Event.Image" style="width: 200px !important; height: 200px !important; object-fit: cover !important" />
+        </div>
+        <div class="card-body">
+            <h5>Course Name</h5>  @Model.EventDetail.Event.Title
+        </div>
+        <div class="card-body">
+            <h5>Speakers</h5>
+            @foreach (Speaker speakers in Model.Speakers)
+            {
+                <ul>
+                    <li>
+                        <span><span class="font-weight-bold">Name : </span>@speakers.FullName ,</span> <span class="font-weight-bold">Profession : </span><span>@speakers.Position</span>
+                    </li>
+                </ul>
+            }
+        </div>
+        <div class="card-body">
+            <h4 class="card-text" style="font-family: Montserrat, sans-serif;">Do you want to delete?</h4>
+        </div>
+        <div class="row" style="margin-left: 10px; padding-bottom: 15px">
+            <form method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary" style="margin-left: 10px">Go Back</a>
+        </div>
+    </div>
+</div>

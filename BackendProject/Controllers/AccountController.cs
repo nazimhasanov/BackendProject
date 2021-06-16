@@ -29,10 +29,10 @@ namespace BackendProject.Controllers
 
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return NotFound();
-            }
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    return NotFound();
+            //}
             return View();
         }
 

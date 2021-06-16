@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace BackendProject.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    [Authorize(Roles = RoleConstant.Admin)]
+    //[Authorize(Roles = RoleConstant.Admin)]
     public class EventController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -168,6 +168,124 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             return View(dbEvent);
 
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Event dBevent, List<int?> SpeakersId, List<int?> CategoriesId)
+        {
+            ViewBag.Speakers = _dbContext.Speakers.Where(x => x.IsDelete == false).ToList();
+            ViewBag.Categories = _dbContext.Categories.Where(x => x.IsDeleted == false).ToList();
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if (SpeakersId == null)
+            {
+                ModelState.AddModelError("", "Please select Speaker");
+                return View();
+            }
+
+            if (CategoriesId == null)
+            {
+                ModelState.AddModelError("", "Please select Category");
+                return View();
+            }
+
+            if (id == null)
+                return NotFound();
+
+            var dbEvent = _dbContext.Events.Where(x => x.IsDelete == false).Include(x => x.EventDetail).ThenInclude(x => x.EventDetailSpeakers).ThenInclude(x => x.Speaker)
+                                                      .Include(y => y.EventCategories).ThenInclude(y => y.Category).FirstOrDefault(x => x.Id == id);
+
+            if (dbEvent == null)
+                return NotFound();
+
+            if (dBevent.Photo != null)
+            {
+                if (!dBevent.Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "Not the image you uploaded");
+                    return View();
+                }
+
+                if (!dBevent.Photo.IsSizeAllowed(1024))
+                {
+                    ModelState.AddModelError("Photo", "The size of the uploaded image is high");
+                    return View();
+                }
+
+                var fileName = await FilesUtil.GenerateFileAsync(Constants.EventImageFolderPath, dBevent.Photo);
+                dBevent.Image = fileName;
+                dBevent.IsDelete = false;
+            }
+
+            var eventDetailSpeakers = new List<EventDetailSpeaker>();
+
+            foreach (int eventDbspeaker in SpeakersId)
+            {
+                var eventDetailSpeaker = new EventDetailSpeaker ();
+                eventDetailSpeaker.EventDetailId = dbEvent.Id;
+                eventDetailSpeaker.SpeakerId = eventDbspeaker;
+                eventDetailSpeakers.Add(eventDetailSpeaker);
+            }
+
+            var eventCategories = new List<EventCategory>();
+
+            foreach (var ec in CategoriesId)
+            {
+                var eventCategory = new EventCategory();
+                eventCategory.EventId = dBevent.Id;
+                eventCategory.CategoryId = (int)ec;
+                eventCategories.Add(eventCategory);
+            }
+
+            dbEvent.Title = dBevent.Title;
+            dbEvent.Venue = dBevent.Venue;
+            dbEvent.TimeStart = dBevent.TimeStart;
+            dbEvent.TimeEnd = dBevent.TimeEnd;
+            dbEvent.EventDetail.Description = dBevent.EventDetail.Description;
+            dbEvent.EventCategories = eventCategories;
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var dbEvent = _dbContext.Events.Where(x => x.IsDelete == false).Include(x => x.EventDetail).ThenInclude(y => y.EventDetailSpeakers)
+                                                                            .ThenInclude(y => y.Speaker).FirstOrDefault(z => z.Id == id);
+
+            if (dbEvent == null)
+                return NotFound();
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteEvent(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var dbEvent = _dbContext.Events.Where(x => x.IsDelete == false).Include(x => x.EventDetail).ThenInclude(y => y.EventDetailSpeakers)
+                                                                            .ThenInclude(y => y.Speaker).FirstOrDefault(z => z.Id == id);
+
+            if (dbEvent == null)
+                return NotFound();
+
+            dbEvent.IsDelete = true;
+            dbEvent.EventDetail.IsDelete = true;
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
     }
+
   
 }

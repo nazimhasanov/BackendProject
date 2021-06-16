@@ -2,6 +2,7 @@
 using BackendProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,48 @@ namespace BackendProject.Areas.AdminPanel.Controllers
 
             await _dbContext.Categories.AddAsync(category);
             await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var category = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
+
+            if (category == null)
+                return NotFound();
+
+            return View(category);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if (id == null)
+                return NotFound();
+
+            var dbCategory = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
+
+            if (dbCategory == null)
+                return NotFound();
+
+            var isExist = await _dbContext.Categories.AnyAsync(x => x.Title.ToLower() == category.Title.ToLower() && x.Id != id);
+            if (isExist)
+            {
+                ModelState.AddModelError("Name", "This Category is already EXIST !");
+                return View();
+            }
+
+            dbCategory.Title = category.Title;
+            await _dbContext.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
     }
