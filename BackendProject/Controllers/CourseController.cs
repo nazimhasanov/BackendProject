@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BackendProject.Controllers
 {
     public class CourseController : Controller
-    {
+    { 
         private readonly AppDbContext _dbContext;
 
         public CourseController (AppDbContext dbContext)

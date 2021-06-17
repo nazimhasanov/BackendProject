@@ -7,7 +7,7 @@ $(document).on("click", "#button-subscribe", function () {
             type: "Get",
             url: "Home/Subscribe",
             data: {
-                "email": subInput
+                "email": subInput 
 
             },
             success: function (res) {
@@ -36,30 +36,23 @@ $(document).ready(function () {
                 }
             });
         }
-    })
-})
+    });
+});
 $(document).ready(function () {
     let search;
     $(document).on("keyup", "#search-event-input", function () {
 
-        search = $(this).val().trim();
-
-        $("#new-events").empty()
+        search = $(this).val().trim();     
 
         if (search.length > 0) {
             $.ajax({
                 url: '/Event/Search?search=' + search,
                 type: "Get",
                 success: function (res) {
-                    $("#old-events").css("display", "none")
-                    $("#pagination1").css("display", "none")
-                    $("#new-events").append(res)
+                    
+                    $(`#home-search`).append(res)
                 }
             });
-        }
-        else {
-            $("#old-events").css("display", "block")
-            $("#pagination1").css("display", "block")
-        }
+        }      
     });
 });

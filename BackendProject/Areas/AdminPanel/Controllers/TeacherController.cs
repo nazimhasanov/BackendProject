@@ -183,20 +183,20 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            //if (id == null)
-            //    return NotFound();
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    //if (id == null)
+        //    //    return NotFound();
 
-            //var teacher = await _context.Teachers.Where(x => x.IsDeleted == false).Include(x => x.TeacherDetail)
-            //                                    .Include(x => x.SocialMedias).Include(x => x.Position)
-            //                                    .FirstOrDefaultAsync(x => x.Id == id);
+        //    //var teacher = await _context.Teachers.Where(x => x.IsDeleted == false).Include(x => x.TeacherDetail)
+        //    //                                    .Include(x => x.SocialMedias).Include(x => x.Position)
+        //    //                                    .FirstOrDefaultAsync(x => x.Id == id);
 
-            //if (teacher == null)
-            //    return NotFound();
+        //    //if (teacher == null)
+        //    //    return NotFound();
 
-            return View();
-        }
+        //    return View();
+        //}
 
     }
 }

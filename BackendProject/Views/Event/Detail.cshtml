@@ -88,7 +88,7 @@
                         <ul>
                             @foreach (Category category in Model.Categories)
                             {
-                                <li><a asp-action="Index" asp-route-categoryId="@category.Id">@Html.Raw(category.Title) (@category.CourseCategories.Count())</a></li>
+                                <li><a asp-action="Index" asp-route-categoryId="@category.Id">@Html.Raw(category.Title) (@category.EventCategories.Count())</a></li>
 
                             }
                         </ul>

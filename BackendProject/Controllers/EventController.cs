@@ -1,4 +1,5 @@
 ﻿using BackendProject.DataAccessLayer;
+using BackendProject.Models;
 using BackendProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,26 @@ namespace BackendProject.Controllers
         {
             _dbContext = dbContext;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? categoryId) 
         {
-            
-            var events = _dbContext.Events.Where(c => c.IsDelete == false).ToList();
+            if (categoryId == null)
+            {
+                return View();
+            }
+            else
+            {
+                List<Event> evntCategories = new List<Event>();
+                List<EventCategory> eventCategories = _dbContext.EventCategories.Include(x => x.Event).ToList();
+                foreach (EventCategory eventCategory in eventCategories)
+                {
+                    if (eventCategory.CategoryId == categoryId && eventCategory.Event.IsDelete == false)
+                    {
+                       evntCategories.Add(eventCategory.Event);
+                    }
+                }
 
-            return View(events);
+                return View(evntCategories);
+            }
         }
         public IActionResult Detail(int? id)
         {
@@ -38,7 +53,8 @@ namespace BackendProject.Controllers
             {
                 Speakers = _dbContext.Speakers.Where(x => x.IsDelete == false).Take(3).ToList(),
                 EventDetail = eventDetail,
-                Blogs = _dbContext.Blogs.Where(x => x.IsDelete == false).Take(3).ToList()
+                Blogs = _dbContext.Blogs.Where(x => x.IsDelete == false).Take(3).ToList(),
+                Categories = _dbContext.Categories.Include(x => x.EventCategories).ToList()
             };
 
             if (eventDetail == null)

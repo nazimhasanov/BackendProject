@@ -79,7 +79,7 @@ namespace BackendProject.Controllers
         
         public IActionResult Search(string search)
         {
-            if (search == null)
+            if (search == null) 
                 return NotFound();
 
             var searchViewModel = new SearchViewModel

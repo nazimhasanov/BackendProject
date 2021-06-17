@@ -7,7 +7,7 @@
 
         foreach (var blog in Model.Blogs)
         {
-            <li class="li">
+            <li class="li"> 
                 <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
                     @blog.Name
                 </a>
