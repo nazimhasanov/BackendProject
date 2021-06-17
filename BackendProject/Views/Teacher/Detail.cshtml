@@ -1,4 +1,4 @@
-﻿@model TeacherViewModel
+﻿@model TeacherDetail
 
 @{
     ViewData["Title"] = "Detail";
@@ -18,15 +18,15 @@
             </div>
             <div class="col-md-7 col-sm-7 col-xs-12">
                 <div class="teacher-details-content ml-50">
-                    <h2>@Model.TeacherDetail.Teacher.FullName</h2>
-                    <h5>@Model.TeacherDetail.Teacher.Position.FullName</h5>
-                    <h4>@Model.TeacherDetail.Title</h4>
-                    <p>@Model.TeacherDetail.Description</p>
+                    <h2>@Model.Teacher.FullName</h2>
+                    <h5>@Model.Teacher.Position.FullName</h5>
+                    <h4>@Model.Title</h4>
+                    <p>@Model.Description</p>
                     <ul>
-                        <li><span>degree: </span>@Model.TeacherDetail.Degree</li>
-                        <li><span>experience: </span>@Model.TeacherDetail.Experience</li>
-                        <li><span>hobbies: </span>@Model.TeacherDetail.Hobbies</li>
-                        <li><span>faculty: </span>@Model.TeacherDetail.Faculty</li>
+                        <li><span>degree: </span>@Model.Degree</li>
+                        <li><span>experience: </span>@Model.Experience</li>
+                        <li><span>hobbies: </span>@Model.Hobbies</li>
+                        <li><span>faculty: </span>@Model.Faculty</li>
                     </ul>
                 </div>
             </div>
@@ -35,11 +35,11 @@
             <div class="col-md-3 col-sm-4">
                 <div class="teacher-contact">
                     <h4>contact information</h4>
-                    <p><span>mail me : </span>@Model.TeacherDetail.Email</p>
-                    <p><span>make a call : </span>@Model.TeacherDetail.Phone</p>
-                    <p><span>skype : </span> @Model.TeacherDetail.Skype</p>
+                    <p><span>mail me : </span>@Model.Email</p>
+                    <p><span>make a call : </span>@Model.Phone</p>
+                    <p><span>skype : </span> @Model.Skype</p>
                     <ul>
-                        @foreach (var social in Model.SocialMedias)
+                        @foreach (var social in Model.Teacher.SocialMedias)
                         {
                             <li><a href=@social.Link>@Html.Raw(social.Icon)</a></li>
 
@@ -58,7 +58,7 @@
                                 <span>language</span>
                                 <div class="progress">
                                     <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 85%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-                                        <span class="text-top">@Model.TeacherDetail.Language%</span>
+                                        <span class="text-top">@Model.Language%</span>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                 <span>team leader</span>
                                 <div class="progress">
                                     <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 90%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-                                        <span class="text-top">@Model.TeacherDetail.TeamLeader%</span>
+                                        <span class="text-top">@Model.TeamLeader%</span>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <span>development</span>
                                 <div class="progress">
                                     <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 85%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-                                        <span class="text-top">@Model.TeacherDetail.Development%</span>
+                                        <span class="text-top">@Model.Development%</span>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                 <span>design</span>
                                 <div class="progress">
                                     <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 95%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-                                        <span class="text-top">@Model.TeacherDetail.Design%</span>
+                                        <span class="text-top">@Model.Design%</span>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 <span>innovation</span>
                                 <div class="progress">
                                     <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 85%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-                                        <span class="text-top">@Model.TeacherDetail.Innovation%</span>
+                                        <span class="text-top">@Model.Innovation%</span>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                 <span>communication</span>
                                 <div class="progress">
                                     <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 95%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-                                        <span class="text-top">@Model.TeacherDetail.Communication%</span>
+                                        <span class="text-top">@Model.Communication%</span>
                                     </div>
                                 </div>
                             </div>

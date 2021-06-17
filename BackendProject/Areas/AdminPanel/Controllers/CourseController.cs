@@ -72,7 +72,7 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             {
                 return View();
             }
-            var courseImg = Path.Combine(Constants.EventImageFolderPath, "course");
+            var courseImg = Path.Combine(Constants.ImageFolderPath, "course");
             var fileName = await FilesUtil.GenerateFileAsync(courseImg, course.Photo);
             course.Image = fileName;
 
@@ -177,13 +177,13 @@ namespace BackendProject.Areas.AdminPanel.Controllers
 
             if (course.Image != null)
             {
-                var path = Path.Combine(Constants.EventImageFolderPath, "course", dbCourse.Image);
+                var path = Path.Combine(Constants.ImageFolderPath, "course", dbCourse.Image);
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
                 }
 
-                var courseImg = Path.Combine(Constants.EventImageFolderPath, "course");
+                var courseImg = Path.Combine(Constants.ImageFolderPath, "course");
                 var fileName = await FilesUtil.GenerateFileAsync(courseImg, course.Photo);
 
                 if (course.Photo == null)

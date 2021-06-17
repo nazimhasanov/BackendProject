@@ -1,18 +1,17 @@
 ﻿@model List<Course>
 
 <div class="row">
-    @foreach (Course course in Model)
+    @foreach (var course in Model)
     {
-
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="single-course mb-70">
+        <div class="col-md-4 col-sm-6 col-xs-12 mt-40">
+            <div class="single-course">
                 <div class="course-img">
                     <a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">
                         <img src="~/img/course/@course.Image" alt="course">
                         <div class="course-hover">
                             <i class="fa fa-link"></i>
                         </div>
-                    </a> 
+                    </a>
                 </div>
                 <div class="course-content">
                     <h3><a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">@course.Title</a></h3>
@@ -22,5 +21,4 @@
             </div>
         </div>
     }
-
 </div>

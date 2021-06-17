@@ -1,0 +1,63 @@
+﻿@model SearchViewModel
+
+<ul id="global-search">
+    @if (Model.Blogs != null && Model.Blogs.Count > 0)
+    {
+        <li class="global-search-title">Blog Result</li>
+
+        foreach (var blog in Model.Blogs)
+        {
+            <li class="li">
+                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
+                    @blog.Name
+                </a>
+            </li>
+        }
+    }
+
+
+    @if (Model.Courses != null && Model.Courses.Count > 0)
+    {
+        <li class="global-search-title">Course Result</li>
+
+        @foreach (var course in Model.Courses)
+        {
+            <li class="li">
+                <a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">
+                    @course.Title
+                </a>
+            </li>
+        }
+    }
+
+
+    @if (Model.Events != null && Model.Events.Count > 0)
+    {
+        <li class="global-search-title">Event Result</li>
+
+        @foreach (var eventF in Model.Events)
+        {
+            <li class="li">
+                <a asp-controller="Event" asp-action="Detail" asp-route-id="@eventF.Id">
+                    @eventF.Title
+                </a>
+            </li>
+        }
+    }
+
+
+    @if (Model.Teachers != null && Model.Teachers.Count > 0)
+    {
+        <li class="global-search-title">Teacher Result</li>
+
+        @foreach (var teacher in Model.Teachers)
+        {
+            <li class="li">
+                <a asp-controller="Teacher" asp-action="Detail" asp-route-id="@teacher.Id">
+                    @teacher.FullName
+                </a>
+            </li>
+        }
+    }
+
+</ul>

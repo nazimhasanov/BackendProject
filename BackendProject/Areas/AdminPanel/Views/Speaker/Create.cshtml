@@ -1,0 +1,55 @@
+﻿@model Speaker
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create speaker</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photo">Photo</label>
+                        <input asp-for="Photo" class="form-control" accept="image/*">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FullName">FullName</label>
+                        <input asp-for="FullName" class="form-control" placeholder="FullName">
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Position">Position</label>
+                        <input asp-for="Position" class="form-control" placeholder="Position">
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="eventDetailsId" id="event" multiple>
+
+                            @foreach (EventDetail eventDetail in ViewBag.EventDetails)
+                            {
+                                <option value="@eventDetail.Id">@eventDetail.Event.Title</option>
+                            }
+                        </select>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Go back</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+
+

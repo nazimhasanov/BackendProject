@@ -7,6 +7,18 @@
 @await Component.InvokeAsync("BannerArea", new { title = "Event" })
 <!-- Banner Area End -->
 <!-- Event Start -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="course-title">
+            <h3>search events</h3>
+        </div>
+        <div class="course-form">
+            <form id="search" action="#">
+                <input type="text" placeholder="Search..." name="search" id="search-event-input" />
+            </form>
+        </div>
+    </div>
+</div>
 <div class="event-area three text-center pt-150 pb-150">
     <div class="container">
         @await Component.InvokeAsync("Event")

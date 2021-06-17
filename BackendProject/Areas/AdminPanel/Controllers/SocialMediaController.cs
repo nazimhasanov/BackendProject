@@ -127,6 +127,28 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             return View(socialMedia);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+
+        public async Task<IActionResult> DeleteSocialMedia(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var socialMedia = await _dbContext.SocialMedia.Where(x => x.IsDeleted == false).Include(x => x.Teacher)
+                                                         .FirstOrDefaultAsync(x => x.Id == id);
+
+
+            if (socialMedia == null)
+                return NotFound();
+
+            socialMedia.IsDeleted = true;
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

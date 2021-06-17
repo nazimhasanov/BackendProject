@@ -56,5 +56,9 @@ namespace BackendProject.Controllers
                                                             .Take(8).OrderByDescending(p => p.Id).ToList();
             return PartialView("_EventSearchPartial", events);
         }
+        
+       
+
+       
     }
 }

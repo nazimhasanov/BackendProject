@@ -49,7 +49,7 @@ namespace BackendProject
             });
             services.AddControllersWithViews();
 
-            Constants.EventImageFolderPath = Path.Combine(_enviroment.WebRootPath, "img", "event");
+            Constants.ImageFolderPath = Path.Combine(_enviroment.WebRootPath, "img");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

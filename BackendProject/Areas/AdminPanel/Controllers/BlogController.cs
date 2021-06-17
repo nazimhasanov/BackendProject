@@ -69,7 +69,7 @@ namespace BackendProject.Areas.AdminPanel.Controllers
             {
                 return View();
             }
-            var blogImg = Path.Combine(Constants.EventImageFolderPath, "blog");
+            var blogImg = Path.Combine(Constants.ImageFolderPath, "blog");
             var fileName = await FilesUtil.GenerateFileAsync(blogImg, blog.Photo);
             blog.Image = fileName;
 

@@ -94,7 +94,7 @@ namespace BackendProject.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            var fileName = await FilesUtil.GenerateFileAsync(Constants.EventImageFolderPath, events.Photo);
+            var fileName = await FilesUtil.GenerateFileAsync(Constants.ImageFolderPath, events.Photo);
             events.Image = fileName;
             events.IsDelete = false;
 

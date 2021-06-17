@@ -12,5 +12,6 @@ namespace BackendProject.ViewModels
 
         public EventDetail EventDetail { get; set; }
         public List<Speaker> Speakers { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }

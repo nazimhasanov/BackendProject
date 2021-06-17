@@ -26,8 +26,9 @@ namespace BackendProject.Controllers
             if (id == null)
                 return NotFound();
             
-            var teacherDetail = _dbContext.TeacherDetails.Where(x => x.IsDeleted == false).Include(x => x.Teacher).ThenInclude(x => x.SocialMedias) 
-                .Include(x => x.Teacher).ThenInclude(x => x.Position).FirstOrDefault(z => z.Id == id);
+            var teacherDetail = _dbContext.TeacherDetails.Where(x => x.IsDeleted == false).Include(x => x.Teacher)
+                                                         .ThenInclude(x => x.SocialMedias).Include(x => x.Teacher)
+                                                         .ThenInclude(x => x.Position).FirstOrDefault(z => z.TeacherId == id);
             
             if (teacherDetail == null)
                 return NotFound();

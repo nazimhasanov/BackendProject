@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Teacher teacher = Model;
+}
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <img src="~/img/teacher/@teacher.Image" style="width:200px !important ; height:100px !important" />
+                <h4 class="card-title">Name : @teacher.FullName</h4>
+                <p>
+                    AboutMe : @Html.Raw(teacher.TeacherDetail.Title)
+                </p>
+                <p>Degree : @teacher.TeacherDetail.Degree</p>
+                <p>Experience : @teacher.TeacherDetail.Experience</p>
+                <p>Hobbies : @teacher.TeacherDetail.Hobbies</p>
+                <p>Faculty : @teacher.TeacherDetail.Faculty</p>
+                <p>Email : @teacher.TeacherDetail.Email</p>
+                <p>Phone : @teacher.TeacherDetail.Phone</p>
+                <p>Skype : @teacher.TeacherDetail.Skype</p>
+                <p>Language : @teacher.TeacherDetail.Language</p>
+                <p>Language : @teacher.TeacherDetail.Language</p>
+                <p>TeamLeader : @teacher.TeacherDetail.TeamLeader</p>
+                <p>Development : @teacher.TeacherDetail.Development</p>
+                <p>Design : @teacher.TeacherDetail.Design</p>
+                <p>Innovation : @teacher.TeacherDetail.Innovation</p>
+                <p>Communication : @teacher.TeacherDetail.Communication</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <a asp-action="Index" class="btn btn-primary">Go Back</a>
+    <form method="post">
+        <button type="submit" class="btn btn-danger mr-2">Delete</button>
+    </form>
+</div>
+
+
+

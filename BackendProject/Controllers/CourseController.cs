@@ -1,4 +1,5 @@
 ﻿using BackendProject.DataAccessLayer;
+using BackendProject.Models;
 using BackendProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +20,27 @@ namespace BackendProject.Controllers
 
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? categoryId)
         {
-            var courses = _dbContext.Courses.Where(c => c.IsDelete == false).ToList();      
+            if (categoryId == null)
+            {
+                return View();
+            }
+            else
+            {
+                List<Course> courses = new List<Course>();
+                List<CourseCategory> courseCategories = _dbContext.CourseCategories.Include(x => x.Course).ToList();
+                foreach (CourseCategory courseCategory in courseCategories)
+                {
+                    if (courseCategory.CategoryId == categoryId && courseCategory.Course.IsDelete == false)
+                    {
+                        courses.Add(courseCategory.Course);
+                    }
+                }
+                return View(courses);
+            }
+                
 
-            return View(courses);
         }
         public IActionResult Detail(int? id)
         {
@@ -39,7 +56,8 @@ namespace BackendProject.Controllers
             var courseViewModel = new CourseViewModel
             {
                 CourseDetail = courseDetails,
-                Blogs = _dbContext.Blogs.Where(x => x.IsDelete == false).Take(3).ToList()
+                Blogs = _dbContext.Blogs.Where(x => x.IsDelete == false).Take(3).ToList(),
+                Categories = _dbContext.Categories.Include(x => x.CourseCategories).ToList()
             };
             return View(courseViewModel);
         }
